@@ -1,4 +1,4 @@
-# ADR Standalone
+# ADR (Advanced Dungeons & Rabbits) Standalone
 
 A standalone version of **ADR (Adventure/RPG)** — the classic phpBB2 RPG mod — running without phpBB. Built as a reference for exploring the original game systems (battles, inventory, shops, forge, vault, etc.) without needing a full forum install.
 
