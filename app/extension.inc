@@ -1,0 +1,3 @@
+<?php
+$phpEx = 'php';
+?>

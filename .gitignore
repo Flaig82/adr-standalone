@@ -1,0 +1,18 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE / tool metadata
+.claude/
+.vscode/
+.idea/
+
+# Runtime cache (regenerated automatically)
+app/adr/cache/cache_posters.php
+
+# Cookie jars / temp files
+Choice of class
+
+# Environment overrides
+.env
+.env.local

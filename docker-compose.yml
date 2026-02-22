@@ -1,0 +1,49 @@
+services:
+  web:
+    image: php:7.4-apache
+    ports:
+      - "8085:80"
+    volumes:
+      - ./app:/var/www/html
+    depends_on:
+      - db
+    environment:
+      ADR_DB_HOST: db
+      ADR_DB_NAME: adr
+      ADR_DB_USER: adr
+      ADR_DB_PASS: adr
+      ADR_TABLE_PREFIX: phpbb_
+    command: >
+      bash -lc "
+      docker-php-ext-install mysqli >/dev/null &&
+      a2enmod rewrite >/dev/null &&
+      apache2-foreground
+      "
+
+  db:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password --sql-mode=""
+    environment:
+      MYSQL_DATABASE: adr
+      MYSQL_USER: adr
+      MYSQL_PASSWORD: adr
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3307:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+      - ./db:/docker-entrypoint-initdb.d
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    ports:
+      - "8082:80"
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: root
+    depends_on:
+      - db
+
+volumes:
+  dbdata:
